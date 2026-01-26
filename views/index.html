@@ -12,25 +12,27 @@
     <div class="container">
 
         <h1>URL Shortener</h1>
-        <form id="shorten-form">
+        <form action="/" method="post">
             <div>
                 <label for="url">Enter URL: </label>
                 <input type="url" name="url" id="url" required>
             </div>
             <div>
                 <label for="shortcode">Enter Shortcode: </label>
-                <input type="shortcode" name="shortcode" id="shortcode" required>
+                <input type="text" name="shortCode" id="shortcode" required>
             </div>
 
             <button type="submit">Shorten</button>
         </form>
 
         <h2>Shortened URL</h2>
-        <ul id="shortened-urls"></ul>
+        <ul>
+            {{shortened-urls}}
+        </ul>
     </div>
 
 
-    <script>
+    <!-- <script>
 
         const fetchShortenedUrl = async () => {
             try {
@@ -76,7 +78,7 @@
                     const response = await fetch("/shorten", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ url, shortCode })  // send to the backend as a string
+                        body: JSON.stringify({ url, shortCode })  // send to the backend as a JSON string
                     })
 
                     if (response.ok) {
@@ -96,7 +98,7 @@
             })
 
         fetchShortenedUrl()
-    </script>
+    </script> -->
 </body>
 
 </html>
