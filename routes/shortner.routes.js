@@ -1,10 +1,9 @@
-
 import { readFile, writeFile } from "fs/promises";
 import crypto from "crypto";
 import path from "path";
 import { Router } from "express";
 
-const router = Router() // Instance of the router
+const router = Router(); // Instance of the router
 
 const DATA_FILE = path.join("data", "links.json");
 
@@ -26,6 +25,40 @@ const loadLinks = async () => {
 const saveLinks = async (links) => {
   await writeFile(DATA_FILE, JSON.stringify(links, null, 2));
 };
+
+// Tamplate Engine Demo
+
+router.get("/report", (req, res) => {
+  const student = [
+    {
+      name: "Satish Raut",
+      Institute: "LPU",
+      Specialization: "Data Scienec",
+    },
+    {
+      name: "Alok Pradhan",
+      Institute: "SBHS",
+      Specialization: "MIL",
+    },
+    {
+      name: "Kartikeswara Sahu",
+      Institute: "SMIT",
+      Specialization: "WebDev",
+    },
+    {
+      name: "Prasad Palei",
+      Institute: "Centurian",
+      Specialization: "AI/ML",
+    },
+    {
+      name: "Bablu",
+      Institute: "SOA",
+      Specialization: "Fullstack",
+    },
+  ];
+
+  res.render("report", { student });
+});
 
 // Express GET Method
 router.get("/", async (req, res) => {
@@ -60,7 +93,7 @@ router.get("/", async (req, res) => {
 router.get("/:shortCode", async (req, res) => {
   try {
     const { shortCode } = req.params;
-    console.log(req.params)
+    console.log(req.params);
     const links = await loadLinks();
 
     if (!links[shortCode]) return res.status(404).send("404 Error Occured!");
@@ -98,7 +131,7 @@ router.post("/", async (req, res) => {
     links[finalShortCode] = url;
     await saveLinks(links);
 
-    return res.redirect("/")
+    return res.redirect("/");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error!");

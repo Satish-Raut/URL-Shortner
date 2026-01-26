@@ -1,0 +1,232 @@
+/* =========================
+   GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6f7bf7, #7b4ca5);
+    color: #222;
+}
+
+/* =========================
+   HEADER
+========================= */
+.main-header {
+    width: 100%;
+    background: linear-gradient(135deg, #6f7bf7, #7b4ca5);
+    color: #fff;
+    padding: 16px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   REPORT SECTION (RIGHT PANEL)
+========================= */
+.report-section {
+    max-width: 720px;
+    margin: 60px 80px 0 auto; /* PUSH TO RIGHT */
+    padding: 32px 36px;
+    border-radius: 18px;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Heading */
+.report-section h1 {
+    text-align: center;
+    margin-bottom: 26px;
+    color: #1f1f1f;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* =========================
+   CARD GRID
+========================= */
+.report-section ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+/* Student Card */
+.report-section li {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 18px;
+    border-radius: 14px;
+    border-left: 5px solid #6f7bf7;
+    min-height: 120px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.report-section li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Text */
+.report-section p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.report-section p b {
+    color: #222;
+    font-weight: 600;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+    .report-section {
+        margin: 40px auto;
+    }
+
+    .report-section ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+
+
+/* =========================
+   LEFT DASHBOARD TEXT
+========================= */
+
+.dashboard-text {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.dashboard-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.dashboard-text span {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffffff, #dcdcff, #ffffff);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s infinite linear;
+}
+
+/* Second word delay */
+.dashboard-text span:last-child {
+    animation-delay: 0.4s;
+}
+
+/* Text animation */
+@keyframes shimmer {
+    from {
+        background-position: 0%;
+    }
+    to {
+        background-position: 200%;
+    }
+}
+
+/* Optional floating animation */
+.dashboard-text {
+    animation: floatText 4s ease-in-out infinite;
+}
+
+@keyframes floatText {
+    0% {
+        transform: translateY(-50%) translateY(0);
+    }
+    50% {
+        transform: translateY(-50%) translateY(-10px);
+    }
+    100% {
+        transform: translateY(-50%) translateY(0);
+    }
+}
+
+/* Hide on small screens */
+@media (max-width: 900px) {
+    .dashboard-text {
+        display: none;
+    }
+}
