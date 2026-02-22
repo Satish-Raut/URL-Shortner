@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { loadLinks, saveLinks } from "../models/shortner.model.js";
+import { getLinkByShortcode, loadLinks, saveLinks } from "../models/shortner.model.js";
 
 export const getShortnedPage = async (req, res) => {
   try {
@@ -53,12 +53,14 @@ export const getStudentReport = async (req, res) => {
 export const redirectToShortlink = async (req, res) => {
   try {
     const { shortCode } = req.params;
-    console.log(req.params);
-    const links = await loadLinks();
+    // console.log(req.params);
+    // const links = await loadLinks();
+    // if (!links[shortCode]) return res.status(404).send("404 Error Occured!");
 
-    if (!links[shortCode]) return res.status(404).send("404 Error Occured!");
+    const link = await getLinkByShortcode(shortCode);
+    if (!link) return res.status(404).send("404 Error Occured!");
 
-    return res.redirect(links[shortCode]);
+    return res.redirect(link.url);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error!");
@@ -87,8 +89,9 @@ export const postURLShortner = async (req, res) => {
     }
 
     //NOTE: If everything is fine then add it to the data file
-    links[finalShortCode] = url;
-    await saveLinks(links);
+    // links[finalShortCode] = url;
+    // await saveLinks(links);
+    await saveLinks({ url, shortCode });
 
     return res.redirect("/");
   } catch (error) {
@@ -96,3 +99,4 @@ export const postURLShortner = async (req, res) => {
     return res.status(500).send("Internal Server Error!");
   }
 };
+ 

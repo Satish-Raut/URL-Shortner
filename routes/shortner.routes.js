@@ -18,7 +18,6 @@ router.get("/report", getStudentReport);
 router.get("/", getShortnedPage);
 
 // URL Redirect Logic
-
 router.get("/:shortCode", redirectToShortlink);
 
 // Express POST Method -> {This part of the code Moved to controller folder}

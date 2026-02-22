@@ -3,5 +3,8 @@
   "w3.com": "https://w3school.com",
   "chalk.com": "https://www.npmjs.com/package/chalk",
   "sbhs.myschool.com": "https://sribateswarahighschool.khallikote",
-  "mongo.db": "https://mongodb.com"
+  "mongo.db": "https://mongodb.com",
+  "sbhs.com": "https://myhighschool.com",
+  "satish.in": "http://localhost:3000/satishDev.com",
+  "mylink.in": "https://satishrautdevelopment.com"
 }
