@@ -27,7 +27,7 @@ import { dbClint } from "../config/db-clint.js";
 import { env } from "../config/env.js";
 
 const db = dbClint.db(env.MONGODB_DATABASE_NAME); // 'Create the database'
-const shortnerCollection = db.collection("urls");
+const shortnerCollection = db.collection("urls"); // Select the collection
 
 export const loadLinks = async()=>{
     return shortnerCollection.find().toArray();

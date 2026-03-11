@@ -3,7 +3,6 @@ import { getLinkByShortcode, loadLinks, saveLinks } from "../models/shortner.mod
 
 export const getShortnedPage = async (req, res) => {
   try {
-    // const file = await readFile(path.join("views", "index.html"));
     const links = await loadLinks(); // It returns all the links in js object format
 
     // console.log("Loaded Links:\n", links, typeof links);
@@ -11,7 +10,6 @@ export const getShortnedPage = async (req, res) => {
     // Update the front-end -> {This Code part is converted in to EJS}
     res.render("index", { links, host: req.host });
 
-    // return res.send(content);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error!");
@@ -47,7 +45,7 @@ export const getStudentReport = async (req, res) => {
     },
   ];
 
-  res.render("report", { student });
+  res.render("reportPage", { student });  // This directly render the reportPage.ejs
 };
 
 export const redirectToShortlink = async (req, res) => {
